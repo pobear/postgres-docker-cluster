@@ -119,7 +119,7 @@ services:
             CHECK_PGCONNECT_TIMEOUT: 3 #timout for checking if primary node is healthy
 
             DB_USERS: monkey_user:monkey_pass # in format user:password[,user:password[...]]
-            BACKENDS: "0:pgmaster:5432:1:/var/lib/postgresql/data:ALLOW_TO_FAILOVER,1:pgslave1::::,2:pgslave2::::,3:pgslave3::::" #,4:pgslaveDOES_NOT_EXIST::::
+            BACKENDS: "0:pgmaster:5432:1:/var/lib/postgresql/data:ALLOW_TO_FAILOVER,1:pgslave1::::,2:pgslave2::::,3:pgslave3::::,4:pgslave4::::" #,4:pgslaveDOES_NOT_EXIST::::
                       # in format num:host:port:weight:data_directory:flag[,...]
                       # defaults:
                       #   port: 5432

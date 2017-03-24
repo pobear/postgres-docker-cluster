@@ -2,7 +2,12 @@ FROM postgres:9.5.4
 ARG POSTGRES_VERSION=9.5
 
 RUN echo deb http://debian.xtdv.net/debian jessie main > /etc/apt/sources.list && apt-get update
-RUN apt-get install -y postgresql-server-dev-$POSTGRES_VERSION postgresql-$POSTGRES_VERSION-repmgr  openssh-server
+RUN apt-get install -y postgresql-server-dev-$POSTGRES_VERSION postgresql-$POSTGRES_VERSION-repmgr openssh-server
+RUN apt-get install -y wget make gcc zlib1g-dev libkrb5-dev libssl-dev
+# RUN wget http://ftp.debian.org/debian/pool/main/o/openssl/libssl-dev_1.0.1t-1+deb8u6_amd64.deb && dpkg -i libssl-dev_1.0.1t-1+deb8u6_amd64.deb
+
+# Install pg_pathman plguin
+RUN wget https://github.com/postgrespro/pg_pathman/archive/1.3.tar.gz && tar -xzvf 1.3.tar.gz && cd pg_pathman-1.3/ && make install USE_PGXS=1
 
 # Need SSH for cross connections
 RUN mkdir /var/run/sshd && sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
